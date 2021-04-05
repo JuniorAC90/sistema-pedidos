@@ -1,0 +1,32 @@
+.cabecalho {
+    background-color: lightgrey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nome-empresa {
+    font-weight: bold;
+    margin: 1%;
+    font-family: Helvetica, sans-serif;
+}
+
+.menu {
+    margin: 1%;
+    display: flex;
+    justify-content: space-around;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    margin: 1%;
+    font-family: Helvetica, sans-serif;
+    
+}
+
+a:hover {
+    background-color: blanchedalmond;  
+}
+
+
