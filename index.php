@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,13 +9,8 @@
     <link rel="stylesheet" href="css/cabecalho.css">
 </head>
 <body>
-    <header class="cabecalho">
-        <h1 class="nome-empresa">Nome da Empresa</h1>
-        <nav class="menu">
-            <a href="/pedidos">Pedidos</a>
-            <a href="/produtos">Produtos</a>
-            <a href="/clientes">Clientes</a>
-        </nav>
-    </header>
+    <?php
+        include_once "Cabecalho.php";
+    ?>
 </body>
 </html>
