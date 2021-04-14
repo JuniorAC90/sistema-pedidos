@@ -1,0 +1,24 @@
+.container {
+    background-color: #edf7fe;
+    display: flex;
+}
+
+.tabela {
+   margin-top: 1%;
+   
+   flex-grow: 1; 
+}
+
+thead{
+    border: 2px lightblue solid;
+    font-weight: bold;
+}
+
+
+th,td {
+    border: 1px solid lightseagreen;
+    padding: 1%;
+    text-align: center;
+    width:20%;
+    height:20%;
+}
