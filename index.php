@@ -7,13 +7,35 @@
     <title>Sistema de Pedidos</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/cabecalho.css">
-    <link rel="stylesheet" href="css/principal.css">
+    <link rel="stylesheet" href="css/principal-pedido.css">
 </head>
 <body>
     <?php
+        include_once 'funcoes/funcoes.php';
+        
+        $rota = $_SERVER['PATH_INFO'];
+        $nav = menuAtivo($rota);
         include_once "visao/cabecalho.php"; 
+
+        switch ($rota) {
+            case '/produtos':
+                $titulo = 'Produtos';
+                break;
+            case '/clientes':
+                $titulo = 'Clientes';
+                break;
+            default:
+                $titulo = 'Pedidos';
+                break;
+        }
+
+        
+        
+        //var_dump($_SERVER);
+        
     ?>
     <main class="container">
+    <h2 class="titulo"><?=$titulo?></h2>
         <table class="tabela">
             <thead>
                 <tr>
