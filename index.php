@@ -7,7 +7,12 @@
     <title>Sistema de Pedidos</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/cabecalho.css">
-    <link rel="stylesheet" href="css/principal-pedido.css">
+    <link rel="stylesheet" href="css/links.css">
+    <link rel="stylesheet" href="css/titulo.css">
+    <link rel="stylesheet" href="css/container.css">
+    <link rel="stylesheet" href="css/formulario/formulario-clientes.css">
+    <link rel="stylesheet" href="css/links/links-formulario.css">
+    
 </head>
 <body>
     <?php
@@ -16,6 +21,8 @@
         $rota = $_SERVER['PATH_INFO'];
         $nav = menuAtivo($rota);
         include_once "visao/cabecalho.php"; 
+        include_once "visao/links.php"; 
+        
 
         switch ($rota) {
             case '/produtos':
@@ -24,8 +31,14 @@
             case '/clientes':
                 $titulo = 'Clientes';
                 break;
+            case '/formulario-clientes':
+                $titulo = 'Cadastro de Clientes';
+                include_once "visao/titulo.php"; 
+                include_once "visao/formulario-clientes.php"; 
+                break;
             default:
                 $titulo = 'Pedidos';
+                include_once 'visao/principal.php';
                 break;
         }
 
@@ -34,30 +47,6 @@
         //var_dump($_SERVER);
         
     ?>
-    <main class="container">
-    <h2 class="titulo"><?=$titulo?></h2>
-        <table class="tabela">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Cliente</th>
-                    <th>Bairro</th>
-                    <th>Estado</th>
-                    <th>Valor</th>
-                    <th>-</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Nome do Cliente</td>
-                    <td>Nome do Bairro</td>
-                    <td>Nome do Estado</td>
-                    <td>Nome do Valor</td>
-                    <td>-</td>
-                </tr>
-            </tbody>
-        </table>
-    </main>
+    
 </body>
 </html>

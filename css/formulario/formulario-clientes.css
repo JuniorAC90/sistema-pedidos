@@ -1,0 +1,19 @@
+.formulario-clientes__campos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+}
+
+.formulario-clientes__texto {
+    font-size: 1.rem;
+    margin: 1rem;
+}
+
+.formulario-clientes__botoes {
+    background-color:lightsteelblue;
+    font-size: 1.rem;
+    margin: 1rem;
+    padding: 1rem;
+}

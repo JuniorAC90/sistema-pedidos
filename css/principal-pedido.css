@@ -1,16 +1,3 @@
-.container {
-    background-color: #edf7fe;
-    display: flex;
-    flex-direction: column;
-}
-
-.titulo {
-    font-weight: bold;
-    text-align: center;
-    margin-top: 1%;
-    font-size: 1.5rem;
-}
-
 .tabela {
    margin-top: 1%;
    
