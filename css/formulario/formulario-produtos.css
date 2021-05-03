@@ -1,23 +1,23 @@
-.formulario-clientes {
+.formulario-produtos {
     display: flex;
     flex-direction: column;
 }
 
-.formulario-clientes__campos {
+.formulario-produtos__campos {
     margin-left: 1.5rem;
     margin-top: 1.5rem;
 }
 
-.legenda-clientes {
+.legenda-produtos {
     margin-bottom: 1.5rem;
 }
 
-.formulario-clientes__texto {
+.formulario-produtos__texto {
     font-size: 1.rem;
     margin: 1rem;
 }
 
-.formulario-clientes__botoes {
+.formulario-produtos__botoes {
     background-color:lightsteelblue;
     font-size: 1.rem;
     margin: 1rem;

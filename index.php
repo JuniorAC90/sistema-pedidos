@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/titulo.css">
     <link rel="stylesheet" href="css/container.css">
     <link rel="stylesheet" href="css/formulario/formulario-clientes.css">
+    <link rel="stylesheet" href="css/formulario/formulario-produtos.css">
     <link rel="stylesheet" href="css/links/links-formulario.css">
     
 </head>
@@ -35,6 +36,15 @@
                 $titulo = 'Cadastro de Clientes';
                 include_once "visao/titulo.php"; 
                 include_once "visao/formulario-clientes.php"; 
+                break;
+            case '/salvar-clientes':
+                include_once "controlador/conexao.php"; 
+                include_once "controlador/salvar-clientes.php"; 
+                break;
+            case '/formulario-produtos':
+                $titulo = 'Cadastro de Produtos';
+                include_once "visao/titulo.php"; 
+                include_once "visao/formulario-produtos.php"; 
                 break;
             default:
                 $titulo = 'Pedidos';
