@@ -13,7 +13,15 @@
     $complemento = filter_input(INPUT_POST, 'complemento-cliente', FILTER_SANITIZE_STRING);
     
     $statement->execute();
+
+    if ($statement->error) {
+       lancaMensagem("Erro ao inserir os dados.", "erro");
+    } else {
+       lancaMensagem("Dados inseridos com sucesso!", "sucesso");
+       //$statement->affected_rows;
+       header("refresh:2; url=/clientes");
+    }
         
-    echo "LInhas inseridas" . $statement->affected_rows;
+   
     
     

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Pedidos</title>
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/mensagens.css">
     <link rel="stylesheet" href="css/cabecalho.css">
     <link rel="stylesheet" href="css/links.css">
     <link rel="stylesheet" href="css/titulo.css">
@@ -18,6 +19,7 @@
 <body>
     <?php
         include_once 'funcoes/funcoes.php';
+        include_once "configuracoes/conexao.php"; 
         
         $rota = $_SERVER['PATH_INFO'];
         $nav = menuAtivo($rota);
@@ -30,7 +32,10 @@
                 $titulo = 'Produtos';
                 break;
             case '/clientes':
+                
                 $titulo = 'Clientes';
+                include_once "visao/titulo.php"; 
+                include_once "visao/clientes.php"; 
                 break;
             case '/formulario-clientes':
                 $titulo = 'Cadastro de Clientes';
@@ -38,7 +43,6 @@
                 include_once "visao/formulario-clientes.php"; 
                 break;
             case '/salvar-clientes':
-                include_once "controlador/conexao.php"; 
                 include_once "controlador/salvar-clientes.php"; 
                 break;
             case '/formulario-produtos':

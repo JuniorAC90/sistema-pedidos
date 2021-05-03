@@ -1,0 +1,13 @@
+.mensagem-sucesso {
+    background: lightgreen;
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+}
+
+.mensagem-erro {
+    background: lightcoral;
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+}
