@@ -1,5 +1,5 @@
 <main class="container">
-    <form class="formulario-produtos">
+    <form class="formulario-produtos" method="post" action="/salvar-produtos">
         <fieldset class="formulario-produtos__campos">
         <legend class="legenda-produtos">Dados do Produto:</legend>
             <label class="formulario-produtos__texto">Descrição:<input type="text" id="descricao-produto" name="descricao-produto"></label>

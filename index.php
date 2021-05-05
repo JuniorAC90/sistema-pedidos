@@ -30,6 +30,8 @@
         switch ($rota) {
             case '/produtos':
                 $titulo = 'Produtos';
+                include_once "visao/titulo.php"; 
+                include_once "visao/produtos.php"; 
                 break;
             case '/clientes':
                 
@@ -49,6 +51,9 @@
                 $titulo = 'Cadastro de Produtos';
                 include_once "visao/titulo.php"; 
                 include_once "visao/formulario-produtos.php"; 
+                break;
+            case '/salvar-produtos':
+                include_once "controlador/salvar-produtos.php"; 
                 break;
             default:
                 $titulo = 'Pedidos';
