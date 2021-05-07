@@ -26,3 +26,51 @@
         }
     }
 
+    function pegaClientes() {
+        $banco = new Banco();
+        $conexao = $banco->pegaConexao();
+        $clientes = array();
+        $query = "SELECT * FROM cliente";
+        $statement = $conexao->prepare($query);
+        if ($statement->execute()) {
+            $resultado = $statement->get_result();
+            while ($linha = $resultado->fetch_assoc()) {
+                $dadosCliente = array();
+                $dadosCliente['id'] = $linha['id'];
+                $dadosCliente['nome'] = $linha['nome'];
+                $dadosCliente['sobrenome'] = $linha['sobrenome'];
+                $dadosCliente['telefone'] = $linha['telefone'];
+                $dadosCliente['cep'] = $linha['cep'];
+                $dadosCliente['endereco'] = $linha['endereco'];
+                $dadosCliente['numero'] = $linha['numero'];
+                $dadosCliente['bairro'] = $linha['bairro'];
+                $dadosCliente['complemento'] = $linha['complemento'];
+                $clientes[] = $dadosCliente;
+            }
+        }
+        $statement->close();
+        return $clientes;
+
+    }
+
+    function pegaProdutos() {
+        $banco = new Banco();
+        $conexao = $banco->pegaConexao();
+        $produtos = array();
+        $query = "SELECT * FROM produto";
+        $statement = $conexao->prepare($query);
+        if ($statement->execute()) {
+            $resultado = $statement->get_result();
+            while ($linha = $resultado->fetch_assoc()) {
+                $dadosProduto = array();
+                $dadosProduto['id'] = $linha['id'];
+                $dadosProduto['descricao'] = $linha['descricao'];
+                $dadosProduto['preco'] = $linha['preco'];
+                
+                $produtos[] = $dadosProduto;
+            }
+        }
+        $statement->close();
+        return $produtos;
+    }
+

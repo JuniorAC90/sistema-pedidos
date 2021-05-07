@@ -1,0 +1,26 @@
+.formulario-pedidos {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario-pedidos__campos {
+    margin-left: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.legenda-pedidos {
+    margin-bottom: 1.5rem;
+}
+
+.formulario-pedidos__texto {
+    font-size: 1.rem;
+    margin: 1rem;
+}
+
+.formulario-pedidos__botoes {
+    background-color:lightsteelblue;
+    font-size: 1.rem;
+    margin: 1rem;
+    padding: 1rem;
+}
+

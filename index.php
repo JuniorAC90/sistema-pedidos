@@ -13,13 +13,14 @@
     <link rel="stylesheet" href="css/container.css">
     <link rel="stylesheet" href="css/formulario/formulario-clientes.css">
     <link rel="stylesheet" href="css/formulario/formulario-produtos.css">
+    <link rel="stylesheet" href="css/formulario/formulario-pedidos.css">
     <link rel="stylesheet" href="css/links/links-formulario.css">
     
 </head>
 <body>
     <?php
         include_once 'funcoes/funcoes.php';
-        include_once "configuracoes/conexao.php"; 
+        include_once "modelo/Banco.php"; 
         
         $rota = $_SERVER['PATH_INFO'];
         $nav = menuAtivo($rota);
@@ -34,10 +35,14 @@
                 include_once "visao/produtos.php"; 
                 break;
             case '/clientes':
-                
                 $titulo = 'Clientes';
                 include_once "visao/titulo.php"; 
                 include_once "visao/clientes.php"; 
+                break;
+            case '/pedidos':
+                $titulo = 'Pedidos';
+                include_once "visao/titulo.php"; 
+                include_once "visao/pedidos.php"; 
                 break;
             case '/formulario-clientes':
                 $titulo = 'Cadastro de Clientes';
@@ -54,6 +59,11 @@
                 break;
             case '/salvar-produtos':
                 include_once "controlador/salvar-produtos.php"; 
+                break;
+            case '/formulario-pedidos':
+                $titulo = 'Pedidos';
+                include_once "visao/titulo.php"; 
+                include_once "visao/formulario-pedidos.php"; 
                 break;
             default:
                 $titulo = 'Pedidos';
