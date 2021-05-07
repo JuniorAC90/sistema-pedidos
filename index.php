@@ -15,12 +15,15 @@
     <link rel="stylesheet" href="css/formulario/formulario-produtos.css">
     <link rel="stylesheet" href="css/formulario/formulario-pedidos.css">
     <link rel="stylesheet" href="css/links/links-formulario.css">
+    <link rel="stylesheet" href="css/tabela.css">
     
 </head>
 <body>
     <?php
         include_once 'funcoes/funcoes.php';
         include_once "modelo/Banco.php"; 
+        include_once "modelo/Cliente.php"; 
+        include_once "modelo/Produto.php"; 
         
         $rota = $_SERVER['PATH_INFO'];
         $nav = menuAtivo($rota);

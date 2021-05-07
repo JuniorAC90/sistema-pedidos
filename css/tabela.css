@@ -1,0 +1,21 @@
+.tabela {
+    border: 1px solid;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.tabela thead {
+    font-weight: bold;
+}
+
+.tabela tr {
+    border: 1px solid;
+    text-align: center;
+    
+}
+
+.tabela th, .tabela td {
+    
+    padding: 1rem;
+    
+}

@@ -74,3 +74,53 @@
         return $produtos;
     }
 
+    function insereCliente($cliente) {
+        $banco = new Banco();
+        $conexao = $banco->pegaConexao(); 
+        $query = "INSERT INTO cliente(nome, sobrenome, telefone, cep, endereco, numero, bairro, complemento) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        $statement = $conexao->prepare($query);
+        $statement->bind_param('sssssiss', $nome, $sobrenome, $telefone, $cep, $endereco, $numero, $bairro, $complemento);
+
+        $nome = $cliente->pegaNome();
+        $sobrenome = $cliente->pegaSobrenome();
+        $telefone = $cliente->pegaTelefone();
+        $cep = $cliente->pegaCep();
+        $endereco = $cliente->pegaEndereco();
+        $numero = $cliente->pegaNumero();
+        $bairro = $cliente->pegaBairro();
+        $complemento = $cliente->pegaComplemento();
+
+        $statement->execute();
+
+        if ($statement->error) {
+            lancaMensagem("Erro ao inserir os dados.", "erro");
+        } else {
+            lancaMensagem("Dados inseridos com sucesso!", "sucesso");
+            //$statement->affected_rows;
+            $statement->close();
+            header("refresh:2; url=/clientes");
+        }
+    }
+
+    function insereProduto($produto) {
+        $banco = new Banco();
+        $conexao = $banco->pegaConexao(); 
+        $query = "INSERT INTO produto(descricao, preco) VALUES(?, ?)";
+        $statement = $conexao->prepare($query);
+        $statement->bind_param('sd', $descricao, $preco);
+
+        $descricao = $produto->pegaDescricao();
+        $preco = $produto->pegaPreco();
+
+        $statement->execute();
+
+        if ($statement->error) {
+            lancaMensagem("Erro ao inserir os dados.", "erro");
+        } else {
+            lancaMensagem("Dados inseridos com sucesso!", "sucesso");
+            //$statement->affected_rows;
+            $statement->close();
+            header("refresh:2; url=/produtos");
+        }
+    }
+

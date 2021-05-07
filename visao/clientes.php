@@ -5,7 +5,7 @@
 <main class="container">
     
     <table class="tabela">
-        <thead>
+        <thead class="tabela-cabecalho">
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
@@ -18,7 +18,7 @@
                 <th>Complemento</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="tabela-principal">
         <?php
         for ($i = 0; $i < count($clientes); $i++) {
             echo "<tr>

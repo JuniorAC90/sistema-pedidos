@@ -1,5 +1,6 @@
 <?php 
     $clientes = pegaClientes();
+    $produtos = pegaProdutos();
 ?>
 
 <main class="container">
@@ -17,6 +18,19 @@
                 </datalist>
                 <button type="button">Adicionar</button>
             </label>
+            <label class="formulario-pedidos__texto">
+                Produto:<input list="lista-produtos">
+                <datalist id="lista-produtos">
+                    <?php 
+                        for ($i = 0; $i < count($produtos); $i++) {
+                            echo "<option value={$produtos[$i]['id']}>{$produtos[$i]['descricao']}</option>";
+                        }
+                        
+                    ?>
+                </datalist>
+                <button type="button">Adicionar</button>
+            </label>
+            
         </fieldset>
         <fieldset class="formulario-pedidos__botoes">
             <input type="submit" value="Salvar">
