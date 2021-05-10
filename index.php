@@ -79,6 +79,6 @@
         //var_dump($_SERVER);
         
     ?>
-    
+    <script src="js/cep.js"></script>
 </body>
 </html>
