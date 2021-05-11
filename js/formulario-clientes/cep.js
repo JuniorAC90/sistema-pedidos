@@ -47,3 +47,5 @@ botaoCep.addEventListener("click", function(event) {
     buscaCep(campoCep.value)
 })
 
+mascaraCep(campoCep.value)
+

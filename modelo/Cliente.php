@@ -1,6 +1,7 @@
 <?php
 class Cliente {
 
+    private $id;
     private $nome;
     private $sobrenome;
     private $telefone;
@@ -14,6 +15,9 @@ class Cliente {
          
     }
 
+    function pegaId() {
+        return $this->id;
+    }
     function pegaNome() {
         return $this->nome;
     }
@@ -39,6 +43,9 @@ class Cliente {
         return $this->complemento;
     }
 
+    function insereId($id) {
+        $this->id = $id;
+    }
     function insereNome($nome) {
         $this->nome = $nome;
     }

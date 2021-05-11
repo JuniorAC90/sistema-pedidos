@@ -16,6 +16,7 @@
                 <th>Número</th>
                 <th>Bairro</th>
                 <th>Complemento</th>
+                <th>-</th>
             </tr>
         </thead>
         <tbody class="tabela-principal">
@@ -31,6 +32,10 @@
                     <td>{$clientes[$i]['numero']}</td>
                     <td>{$clientes[$i]['bairro']}</td>
                     <td>{$clientes[$i]['complemento']}</td>
+                    <td class='operacoes'>
+                        <a href='/edicao-clientes?id={$clientes[$i]['id']}'>Editar</a>
+                        <a href='/excluir-clientes?id={$clientes[$i]['id']}' onclick='return confirm(\"Deseja excluir?\")'>Excluir</a> 
+                    </td>
                   </tr>";
         }
         ?>

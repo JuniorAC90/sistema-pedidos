@@ -1,6 +1,7 @@
 <?php
 class Produto {
 
+    private $id;
     private $descricao;
     private $preco;
     
@@ -8,6 +9,9 @@ class Produto {
          
     }
 
+    function pegaId() {
+        return $this->id;
+    }
     function pegaDescricao() {
         return $this->descricao;
     }
@@ -16,6 +20,9 @@ class Produto {
     }
 
 
+    function insereId($id) {
+        $this->id = $id;
+    }
     function insereDescricao($descricao) {
         $this->descricao = $descricao;
     }

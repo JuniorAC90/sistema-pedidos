@@ -53,6 +53,32 @@
 
     }
 
+    function pegaUmCliente($id) {
+        $banco = new Banco();
+        $conexao = $banco->pegaConexao();
+        $cliente = new Cliente();
+        $query = "SELECT * FROM cliente WHERE id = ?";
+        $statement = $conexao->prepare($query);
+        $statement->bind_param('i', $id);
+        if ($statement->execute()) {
+            $resultado = $statement->get_result();
+            while ($linha = $resultado->fetch_assoc()) {
+                $cliente->insereId($linha['id']);
+                $cliente->insereNome($linha['nome']);
+                $cliente->insereSobrenome($linha['sobrenome']);
+                $cliente->insereTelefone($linha['telefone']);
+                $cliente->insereCep($linha['cep']);
+                $cliente->insereEndereco($linha['endereco']);
+                $cliente->insereNumero($linha['numero']);
+                $cliente->insereBairro($linha['bairro']);
+                $cliente->insereComplemento($linha['complemento']);;
+            }
+        }
+        $statement->close();
+        return $cliente;
+
+    }
+
     function pegaProdutos() {
         $banco = new Banco();
         $conexao = $banco->pegaConexao();
@@ -72,6 +98,25 @@
         }
         $statement->close();
         return $produtos;
+    }
+
+    function pegaUmProduto($id) {
+        $banco = new Banco();
+        $conexao = $banco->pegaConexao();
+        $produto = new Produto();
+        $query = "SELECT * FROM produto WHERE id = ?";
+        $statement = $conexao->prepare($query);
+        $statement->bind_param('i', $id);
+        if ($statement->execute()) {
+            $resultado = $statement->get_result();
+            while ($linha = $resultado->fetch_assoc()) {
+                $produto->insereId($linha['id']);
+                $produto->insereDescricao($linha['descricao']);
+                $produto->inserePreco($linha['preco']);
+            }
+        }
+        $statement->close();
+        return $produto;
     }
 
     function insereCliente($cliente) {
@@ -118,6 +163,101 @@
             lancaMensagem("Erro ao inserir os dados.", "erro");
         } else {
             lancaMensagem("Dados inseridos com sucesso!", "sucesso");
+            //$statement->affected_rows;
+            $statement->close();
+            header("refresh:2; url=/produtos");
+        }
+    }
+
+    function editaCliente($cliente) {
+        $banco = new Banco();
+        $conexao = $banco->pegaConexao(); 
+        $query = "UPDATE cliente set nome = ?, sobrenome = ?, telefone = ?, cep = ?, endereco = ?, numero = ?, bairro = ?, complemento = ? WHERE id = ?";
+        $statement = $conexao->prepare($query);
+        $statement->bind_param('sssssissi', $nome, $sobrenome, $telefone, $cep, $endereco, $numero, $bairro, $complemento, $id);
+
+        $nome = $cliente->pegaNome();
+        $sobrenome = $cliente->pegaSobrenome();
+        $telefone = $cliente->pegaTelefone();
+        $cep = $cliente->pegaCep();
+        $endereco = $cliente->pegaEndereco();
+        $numero = $cliente->pegaNumero();
+        $bairro = $cliente->pegaBairro();
+        $complemento = $cliente->pegaComplemento();
+        $id = $cliente->pegaId();
+
+        $statement->execute();
+
+        if ($statement->error) {
+            lancaMensagem("Erro ao editar os dados.", "erro");
+        } else {
+            lancaMensagem("Dados editados com sucesso!", "sucesso");
+            //$statement->affected_rows;
+            $statement->close();
+            header("refresh:2; url=/clientes");
+        }
+    }
+
+    function editaProduto($produto) {
+        
+        $banco = new Banco();
+        $conexao = $banco->pegaConexao(); 
+        $query = "UPDATE produto set descricao = ?, preco = ? WHERE id = ?";
+        $statement = $conexao->prepare($query);
+        $statement->bind_param('sdi', $descricao, $preco, $id);
+
+        $descricao = $produto->pegaDescricao();
+        $preco = $produto->pegaPreco();
+        $id = $produto->pegaId();
+        
+
+        $statement->execute();
+       
+
+        if ($statement->error) {
+            lancaMensagem("Erro ao editar os dados.", "erro");
+        } else {
+            lancaMensagem("Dados editados com sucesso!", "sucesso");
+            //$statement->affected_rows;
+            $statement->close();
+            header("refresh:2; url=/produtos");
+        }
+    }
+
+    function removeCliente($id) {
+        $banco = new Banco();
+        $conexao = $banco->pegaConexao(); 
+        $query = "DELETE FROM cliente WHERE id = ?";
+        $statement = $conexao->prepare($query);
+        $statement->bind_param('i', $id);
+
+        
+        $statement->execute();
+
+        if ($statement->error) {
+            lancaMensagem("Erro ao apagar os dados.", "erro");
+        } else {
+            lancaMensagem("Dados removidos com sucesso!", "sucesso");
+            //$statement->affected_rows;
+            $statement->close();
+            header("refresh:2; url=/clientes");
+        }
+    }
+
+    function removeProduto($id) {
+        $banco = new Banco();
+        $conexao = $banco->pegaConexao(); 
+        $query = "DELETE FROM produto WHERE id = ?";
+        $statement = $conexao->prepare($query);
+        $statement->bind_param('i', $id);
+
+        
+        $statement->execute();
+
+        if ($statement->error) {
+            lancaMensagem("Erro ao apagar os dados.", "erro");
+        } else {
+            lancaMensagem("Dados removidos com sucesso!", "sucesso");
             //$statement->affected_rows;
             $statement->close();
             header("refresh:2; url=/produtos");

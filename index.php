@@ -49,11 +49,24 @@
                 break;
             case '/formulario-clientes':
                 $titulo = 'Cadastro de Clientes';
+                $edita = false;
                 include_once "visao/titulo.php"; 
                 include_once "visao/formulario-clientes.php"; 
                 break;
             case '/salvar-clientes':
                 include_once "controlador/salvar-clientes.php"; 
+                break;
+            case '/edicao-clientes':
+                $edita = true;
+                $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+                $cliente = pegaUmCliente($id);
+                include_once "visao/formulario-clientes.php"; 
+                break;
+            case '/editar-clientes':
+                include_once "controlador/editar-clientes.php"; 
+                break;
+            case '/excluir-clientes':
+                include_once "controlador/excluir-clientes.php"; 
                 break;
             case '/formulario-produtos':
                 $titulo = 'Cadastro de Produtos';
@@ -62,6 +75,18 @@
                 break;
             case '/salvar-produtos':
                 include_once "controlador/salvar-produtos.php"; 
+                break;
+            case '/edicao-produtos':
+                $edita = true;
+                $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+                $produto = pegaUmProduto($id);
+                include_once "visao/formulario-produtos.php"; 
+                break;
+            case '/editar-produtos':
+                include_once "controlador/editar-produtos.php"; 
+                break;
+            case '/excluir-produtos':
+                include_once "controlador/excluir-produtos.php"; 
                 break;
             case '/formulario-pedidos':
                 $titulo = 'Pedidos';
@@ -79,7 +104,8 @@
         //var_dump($_SERVER);
         
     ?>
-    <script src="js/cep.js"></script>
-    <script src="js/telefone.js"></script>
+    <script src="js/formulario-clientes/cep.js"></script>
+    <script src="js/formulario-clientes/telefone.js"></script>
+    <script src="js/formulario-produtos/preco.js"></script>
 </body>
 </html>

@@ -10,3 +10,5 @@ function mascaraTelefone(valor) {
 campoTelefone.addEventListener('keypress', (e) => mascaraTelefone(e.target.value)) // Dispara quando digitado no campo
 campoTelefone.addEventListener('change', (e) => mascaraTelefone(e.target.value)) // Dispara quando autocompletado o campo
 campoTelefone.addEventListener('keyup', (e) => mascaraTelefone(e.target.value)) 
+
+mascaraTelefone(campoTelefone.value)
