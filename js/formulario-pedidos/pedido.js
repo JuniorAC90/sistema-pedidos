@@ -2,6 +2,12 @@
 const botaoFecharPedido = document.querySelector('[data-fechar-pedido]')
 const botaoPedido = document.querySelector('[data-botao-pedido]') 
 
+const inputDinheiro = document.querySelector('[data-dinheiro]')
+const inputCartao = document.querySelector('[data-cartao]')
+const inputTransferencia = document.querySelector('[data-transferencia]')
+
+var taxa = false;
+
 
 function checaPedido(cliente, produtos) {
     let checaCliente = false
@@ -36,5 +42,54 @@ if (botaoFecharPedido !== null) {
             botaoPedido.disabled = false;
         }
 
+    })
+}
+
+function verificaDinheiro(checkboxDinheiro) {
+    let valor = 0.00
+    if (checkboxDinheiro) {
+        if (taxa) {
+            valor = 2.00 * -1
+            atualizaTotal(valor)
+            taxa = false
+        }   
+    } 
+}
+
+function verificaCartao(checkboxCartao) {
+    let valor = 0.00
+    if (checkboxCartao) {
+        taxa = true
+        valor = 2.00
+        atualizaTotal(valor)
+    } 
+}
+
+function verificaTransferencia(checkboxTransferecia) {
+    let valor = 0.00
+    if (checkboxTransferecia) {
+        if (taxa) {
+            valor = 2.00 * -1
+            atualizaTotal(valor)
+            taxa = false
+        }   
+    } 
+}
+
+if (inputDinheiro !== null) {
+    inputDinheiro.addEventListener('change', () => {
+        verificaDinheiro(inputDinheiro.checked)
+    })
+}
+
+if (inputCartao !== null) {
+    inputCartao.addEventListener('change', () => {
+        verificaCartao(inputCartao.checked)
+    })
+}
+
+if (inputTransferencia !== null) {
+    inputTransferencia.addEventListener('change', () => {
+        verificaTransferencia(inputTransferencia.checked)
     })
 }

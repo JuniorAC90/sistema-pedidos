@@ -17,7 +17,7 @@ const itensTabela = document.querySelector('[data-itens-tabela]')
 
 const botaoLimparPedido = document.querySelector('[data-limpar-pedido]')
 
-const inputCartao = document.querySelector('[data-cartao]')
+
 
 
 function atualizaTotal(valor) {
@@ -136,16 +136,6 @@ function limparPedido() {
     inputTotal.value = parseFloat("0.00").toFixed(2)
 }
 
-function verificaCartao(checkboxCartao) {
-    let valor = 0.00
-    if (checkboxCartao) {
-        valor = 2.00
-        atualizaTotal(valor)
-    } else {
-        valor = 2.00 * -1
-        atualizaTotal(valor)
-    }
-}
 
 if (botaoLimparPedido !== null) {
     botaoLimparPedido.addEventListener('click', (e) => {
@@ -154,11 +144,6 @@ if (botaoLimparPedido !== null) {
     })
 }
 
-if (inputCartao !== null) {
-    inputCartao.addEventListener('change', () => {
-        verificaCartao(inputCartao.checked)
-    })
-}
 
 if (botaoAdicionaProduto !== null) {
 
@@ -181,21 +166,3 @@ if (itensTabela !== null) {
         removeItem(e, indice)
     })
 } 
-/*
-
-
-
-
-
-
-
-
-if (botaoAdicionaProduto !== null) {
-
-    botaoAdicionaProduto.addEventListener('click', (e) => {
-        e.preventDefault()
-        adicionaProduto()
-    })
-
-}
-*/

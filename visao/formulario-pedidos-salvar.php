@@ -106,11 +106,17 @@
             </table>
         </fieldset>
         <fieldset class="formulario-pedidos__campos">
-            
-            
             <label class="formulario-pedidos__texto">
-                <input type="checkbox" id="pedido-cartao" name="pedido-cartao" data-cartao>
+                <input type="radio" id="pedido-dinheiro" name="pedido-pagamento" value="d" checked data-dinheiro>
+                Dinheiro
+            </label>
+            <label class="formulario-pedidos__texto">
+                <input type="radio" id="pedido-cartao" name="pedido-pagamento" value="c" data-cartao>
                 Cartão
+            </label>
+            <label class="formulario-pedidos__texto">
+                <input type="radio" id="pedido-transferencia" name="pedido-pagamento" value="t" data-transferencia>
+                Transferência
             </label>
         </fieldset>
         <fieldset class="formulario-pedidos__campos">
