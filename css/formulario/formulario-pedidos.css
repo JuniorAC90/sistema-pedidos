@@ -1,9 +1,9 @@
-.formulario-pedidos {
+.secao-pedidos, .formulario-pedidos {
     display: flex;
     flex-direction: column;
 }
 
-.formulario-pedidos__campos {
+.secao-pedidos__campos, .formulario-pedidos__campos {
     margin-left: 1.5rem;
     margin-top: 1.5rem;
 }
@@ -12,12 +12,12 @@
     margin-bottom: 1.5rem;
 }
 
-.formulario-pedidos__texto {
+.secao-pedidos__texto, .formulario-pedidos__texto {
     font-size: 1.rem;
     margin: 1rem;
 }
 
-.formulario-pedidos__botoes {
+.secao-pedidos__botoes, .formulario-pedidos__botoes {
     background-color:lightsteelblue;
     font-size: 1.rem;
     margin: 1rem;

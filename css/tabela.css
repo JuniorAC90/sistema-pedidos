@@ -19,3 +19,7 @@
     padding: 1rem;
     
 }
+
+.itens td:hover {
+    background-color: white;
+}

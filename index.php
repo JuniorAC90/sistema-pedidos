@@ -69,6 +69,7 @@
                 include_once "controlador/excluir-clientes.php"; 
                 break;
             case '/formulario-produtos':
+                $edita = false;
                 $titulo = 'Cadastro de Produtos';
                 include_once "visao/titulo.php"; 
                 include_once "visao/formulario-produtos.php"; 
@@ -89,9 +90,13 @@
                 include_once "controlador/excluir-produtos.php"; 
                 break;
             case '/formulario-pedidos':
-                $titulo = 'Pedidos';
+                $edita = false;
+                $titulo = 'Cadastro de Pedidos';
                 include_once "visao/titulo.php"; 
                 include_once "visao/formulario-pedidos.php"; 
+                break;
+            case '/salvar-pedidos':
+                include_once "controlador/salvar-pedidos.php"; 
                 break;
             default:
                 $titulo = 'Pedidos';
@@ -104,8 +109,12 @@
         //var_dump($_SERVER);
         
     ?>
+    <script src="js/funcoes.js"></script>
     <script src="js/formulario-clientes/cep.js"></script>
     <script src="js/formulario-clientes/telefone.js"></script>
     <script src="js/formulario-produtos/preco.js"></script>
+    <script src="js/formulario-pedidos/cliente.js"></script>
+    <script src="js/formulario-pedidos/produto.js"></script>
+    <script src="js/formulario-pedidos/pedido.js"></script>
 </body>
 </html>

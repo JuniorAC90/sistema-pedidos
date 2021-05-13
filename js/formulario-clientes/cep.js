@@ -1,3 +1,4 @@
+"use strict"
 const botaoCep = document.querySelector('[data-botao-cep]')
 const campoCep = document.querySelector('[data-campo-cep]')
 
@@ -38,14 +39,19 @@ function buscaCep(valor) {
     }
 }
 
-campoCep.addEventListener('keypress', (e) => mascaraCep(e.target.value))
-campoCep.addEventListener('change', (e) => mascaraCep(e.target.value))
-campoCep.addEventListener('keyup', (e) => mascaraCep(e.target.value))
+if (campoCep !== null) {
+    campoCep.addEventListener('keypress', (e) => mascaraCep(e.target.value))
+    campoCep.addEventListener('change', (e) => mascaraCep(e.target.value))
+    campoCep.addEventListener('keyup', (e) => mascaraCep(e.target.value))
+    
+    botaoCep.addEventListener("click", function(event) {
+        event.preventDefault()
+        buscaCep(campoCep.value)
+    })
 
-botaoCep.addEventListener("click", function(event) {
-    event.preventDefault()
-    buscaCep(campoCep.value)
-})
+    mascaraCep(campoCep.value)
+}
 
-mascaraCep(campoCep.value)
+
+
 
