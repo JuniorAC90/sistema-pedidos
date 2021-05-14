@@ -35,17 +35,17 @@
         if ($statement->execute()) {
             $resultado = $statement->get_result();
             while ($linha = $resultado->fetch_assoc()) {
-                $dadosCliente = array();
-                $dadosCliente['id'] = $linha['id'];
-                $dadosCliente['nome'] = $linha['nome'];
-                $dadosCliente['sobrenome'] = $linha['sobrenome'];
-                $dadosCliente['telefone'] = $linha['telefone'];
-                $dadosCliente['cep'] = $linha['cep'];
-                $dadosCliente['endereco'] = $linha['endereco'];
-                $dadosCliente['numero'] = $linha['numero'];
-                $dadosCliente['bairro'] = $linha['bairro'];
-                $dadosCliente['complemento'] = $linha['complemento'];
-                $clientes[] = $dadosCliente;
+                $cliente = new Cliente();
+                $cliente->insereId($linha['id']);
+                $cliente->insereNome($linha['nome']);
+                $cliente->insereSobrenome($linha['sobrenome']);
+                $cliente->insereTelefone($linha['telefone']);
+                $cliente->insereCep($linha['cep']);
+                $cliente->insereEndereco($linha['endereco']);
+                $cliente->insereNumero($linha['numero']);
+                $cliente->insereBairro($linha['bairro']);
+                $cliente->insereComplemento($linha['complemento']);
+                $clientes[] = $cliente;
             }
         }
         $statement->close();
@@ -88,12 +88,12 @@
         if ($statement->execute()) {
             $resultado = $statement->get_result();
             while ($linha = $resultado->fetch_assoc()) {
-                $dadosProduto = array();
-                $dadosProduto['id'] = $linha['id'];
-                $dadosProduto['descricao'] = $linha['descricao'];
-                $dadosProduto['preco'] = $linha['preco'];
+                $produto = new Produto();
+                $produto->insereId($linha['id']);
+                $produto->insereDescricao($linha['descricao']);
+                $produto->inserePreco($linha['preco']);
                 
-                $produtos[] = $dadosProduto;
+                $produtos[] = $produto;
             }
         }
         $statement->close();
@@ -117,6 +117,35 @@
         }
         $statement->close();
         return $produto;
+    }
+
+    function pegaPedidos() {
+        $banco = new Banco();
+        $conexao = $banco->pegaConexao();
+        $pedidos = array();
+        $query = "SELECT * FROM pedido";
+        $statement = $conexao->prepare($query);
+        if ($statement->execute()) {
+            $resultado = $statement->get_result();
+            while ($linha = $resultado->fetch_assoc()) {
+                $pedido  = new Pedido();
+                $pedido->insereId($linha['id']);
+                $pedido->insereClienteId($linha['cliente_id']);
+                $pedido->insereAno($linha['ano']);
+                $pedido->insereMes($linha['mes']);
+                $pedido->insereDia($linha['dia']);
+                $pedido->insereHora($linha['hora']);
+                $pedido->insereMinuto($linha['minuto']);
+                $pedido->insereSegundo($linha['segundo']);
+                $pedido->insereTotal($linha['total']);
+                $pedido->insereEstado($linha['estado']);
+                $pedido->inserePagamento($linha['pagamento']);
+                
+                $pedidos[] = $pedido;
+            }
+        }
+        $statement->close();
+        return $pedidos;
     }
 
     function insereCliente($cliente) {
@@ -166,6 +195,62 @@
             //$statement->affected_rows;
             $statement->close();
             header("refresh:2; url=/produtos");
+        }
+    }
+
+    function inserePedido($pedido) {
+        $banco = new Banco();
+        $conexao = $banco->pegaConexao(); 
+        $query = "INSERT INTO pedido(id, cliente_id, ano, mes, dia, hora, minuto, segundo, total, estado, pagamento) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $statement = $conexao->prepare($query);
+        $statement->bind_param('sissssssdss', $id, $clienteId, $ano, $mes, $dia, $hora, $minuto, $segundo, $total, $estado, $pagamento);
+
+        $id = $pedido->pegaId();
+        $clienteId = $pedido->pegaClienteId();
+        $ano = $pedido->pegaAno();
+        $mes = $pedido->pegaMes();
+        $dia = $pedido->pegaDia();
+        $hora = $pedido->pegaHora();
+        $minuto = $pedido->pegaMinuto();
+        $segundo = $pedido->pegaSegundo();
+        $total = $pedido->pegaTotal();
+        $estado = $pedido->pegaEstado();
+        $pagamento = $pedido->pegaPagamento();
+
+        $statement->execute();
+
+        if ($statement->error) {
+            lancaMensagem("Erro ao inserir os dados.", "erro");
+        } else {
+            lancaMensagem("Dados inseridos com sucesso!", "sucesso");
+            //$statement->affected_rows;
+            $statement->close();
+            header("refresh:2; url=/pedidos");
+        }
+    }
+
+    function insereItem($item, $indice) {
+        $indice++;
+        $banco = new Banco();
+        $conexao = $banco->pegaConexao(); 
+        $query = "INSERT INTO item(pedido_id, produto_id, quantidade) VALUES(?, ?, ?)";
+        $statement = $conexao->prepare($query);
+        $statement->bind_param('sii', $pedidoId, $produtoId, $quantidade);
+
+        $pedidoId = $item->pegaPedidoId();
+        $produtoId = $item->pegaProdutoId();
+        $quantidade = $item->pegaQuantidade();
+        
+
+        $statement->execute();
+
+        if ($statement->error) {
+            lancaMensagem("Erro ao inserir os dados.", "erro");
+        } else {
+            lancaMensagem("Item {$indice} inserido com sucesso!", "sucesso");
+            //$statement->affected_rows;
+            $statement->close();
+            //header("refresh:2; url=/pedidos");
         }
     }
 

@@ -65,7 +65,7 @@ function adicionaCliente() {
     let nomeCliente = pegaNomeCliente(inputCliente.value)
     let idCliente = pegaIdCliente(inputCliente.value)
     if (nomeCliente !== false) {
-        clientePedido.value = nomeCliente
+        clientePedido.textContent = nomeCliente
         inputIdCliente.value = idCliente
         inputCliente.value = ""
     } else {

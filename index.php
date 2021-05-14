@@ -24,6 +24,8 @@
         include_once "modelo/Banco.php"; 
         include_once "modelo/Cliente.php"; 
         include_once "modelo/Produto.php"; 
+        include_once "modelo/Item.php"; 
+        include_once "modelo/Pedido.php"; 
         
         $rota = $_SERVER['PATH_INFO'];
         $nav = menuAtivo($rota);

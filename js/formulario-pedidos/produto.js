@@ -65,7 +65,7 @@ function adicionaItemTabela(produto, quantidade) {
 
     dadoProduto.innerHTML = produto.descricao
     dadoQuantidade.innerHTML = quantidade
-    dadoPreco.innerHTML = produto.preco
+    dadoPreco.innerHTML = 'R$ ' + String(produto.preco).replace('.', ',')
 
     linhaProduto.appendChild(dadoProduto)
     linhaProduto.appendChild(dadoQuantidade)

@@ -6,6 +6,8 @@ const inputDinheiro = document.querySelector('[data-dinheiro]')
 const inputCartao = document.querySelector('[data-cartao]')
 const inputTransferencia = document.querySelector('[data-transferencia]')
 
+const spanTaxa = document.querySelector('[data-taxa]')
+
 var taxa = false;
 
 
@@ -51,6 +53,7 @@ function verificaDinheiro(checkboxDinheiro) {
         if (taxa) {
             valor = 2.00 * -1
             atualizaTotal(valor)
+            spanTaxa.textContent = 'R$ 0,00'
             taxa = false
         }   
     } 
@@ -58,10 +61,14 @@ function verificaDinheiro(checkboxDinheiro) {
 
 function verificaCartao(checkboxCartao) {
     let valor = 0.00
+    let valorFormatado = ""
+    
     if (checkboxCartao) {
         taxa = true
         valor = 2.00
         atualizaTotal(valor)
+        valorFormatado = parseFloat(valor).toFixed(2).replace('.', ',')
+        spanTaxa.textContent = `R$ ${valorFormatado}`  
     } 
 }
 
@@ -71,6 +78,7 @@ function verificaTransferencia(checkboxTransferecia) {
         if (taxa) {
             valor = 2.00 * -1
             atualizaTotal(valor)
+            spanTaxa.textContent = 'R$ 0,00'
             taxa = false
         }   
     } 

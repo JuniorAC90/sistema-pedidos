@@ -11,7 +11,7 @@
                 <datalist id="lista-clientes">
                     <?php 
                         for ($i = 0; $i < count($clientes); $i++) {
-                            echo "<option value='{$clientes[$i]['telefone']}'>{$clientes[$i]['nome']}</option>";
+                            echo "<option value='{$clientes[$i]->pegaTelefone()}'>{$clientes[$i]->pegaNome()}</option>";
                         }
                         
                     ?>
@@ -22,7 +22,7 @@
                 <?php 
                 
                     for ($i = 0; $i < count($clientes); $i++) {
-                        echo "<option value='{\"id\":\"{$clientes[$i]["id"]}\",\"nome\":\"{$clientes[$i]["nome"]}\", \"telefone\":\"{$clientes[$i]["telefone"]}\"}'>{$clientes[$i]["nome"]}</option>";
+                        echo "<option value='{\"id\":\"{$clientes[$i]->pegaId()}\",\"nome\":\"{$clientes[$i]->pegaNome()}\", \"telefone\":\"{$clientes[$i]->pegaTelefone()}\"}'>{$clientes[$i]->pegaNome()}</option>";
                     }
                 ?>
             </select>
@@ -33,7 +33,7 @@
                 <datalist id="lista-produtos">
                     <?php 
                         for ($i = 0; $i < count($produtos); $i++) {
-                            echo "<option value={$produtos[$i]['id']}>{$produtos[$i]['descricao']}</option>";
+                            echo "<option value={$produtos[$i]->pegaId()}>{$produtos[$i]->pegaDescricao()}</option>";
                         }
                         
                     ?>
@@ -48,7 +48,7 @@
                 <?php 
                 
                     for ($i = 0; $i < count($produtos); $i++) {
-                        echo "<option value='{\"id\":\"{$produtos[$i]["id"]}\",\"descricao\":\"{$produtos[$i]["descricao"]}\", \"preco\":\"{$produtos[$i]["preco"]}\"}'>{$produtos[$i]["nome"]}</option>";
+                        echo "<option value='{\"id\":\"{$produtos[$i]->pegaId()}\",\"descricao\":\"{$produtos[$i]->pegaDescricao()}\", \"preco\":\"{$produtos[$i]->pegaPreco()}\"}'>{$produtos[$i]->pegaDescricao()}</option>";
                     }
                 ?>
             </select>
@@ -61,29 +61,20 @@
     <form class="formulario-pedidos" method="post" action="/salvar-pedidos">
         <fieldset class="formulario-pedidos__campos">
             <label class="formulario-pedidos__texto">
-            <div id="cliente-pedido" name="cliente-pedido"></div>
-                Cliente:<input type="text" id="cliente-pedido" name="cliente-pedido" data-cliente-pedido readonly>
+                <!--Cliente:<input type="text" id="cliente-pedido" name="cliente-pedido" data-cliente-pedido readonly>-->
+                Cliente: <span class="nome-cliente" data-cliente-pedido></span>
                 <input type="number" id="id-cliente" name="id-cliente" data-id-cliente hidden readonly>
             </label>
         </fieldset>
-        <fieldset class="formulario-pedidos__campos" hidden>
-            <label class="formulario-pedidos__texto">
-                Produto: 
-            </label>
+        <fieldset hidden>
+            
             <select id="item" name="item[]" name multiple data-item-produto>
-
             </select>
-            <label class="formulario-pedidos__texto">
-                Quantidade:
-            </label>
+           
             <select id="quantidade" name="quantidade[]" multiple data-item-quantidade>
-
             </select>
-            <label class="formulario-pedidos__texto">
-                Preço:
-            </label>
-            <select id="preco" name="preco[]" multiple data-item-preco>
 
+            <select id="preco" name="preco[]" multiple data-item-preco>
             </select>
             
         </fieldset>
@@ -121,7 +112,12 @@
         </fieldset>
         <fieldset class="formulario-pedidos__campos">
             <label class="formulario-pedidos__texto">
-                Total:<input type="number" id="total-pedido" name="total-pedido" value="0.00" data-total-pedido readonly>
+                Taxa:<span data-taxa>R$ 0,00</span>
+            </label>
+        </fieldset>
+        <fieldset class="formulario-pedidos__campos">
+            <label class="formulario-pedidos__texto">
+                Total: R$<input type="number" id="total-pedido" name="total-pedido" value="0.00" data-total-pedido readonly>
             </label>
         </fieldset>
             

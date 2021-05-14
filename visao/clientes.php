@@ -23,18 +23,18 @@
         <?php
         for ($i = 0; $i < count($clientes); $i++) {
             echo "<tr>
-                    <td>{$clientes[$i]['id']}</td>
-                    <td>{$clientes[$i]['nome']}</td>
-                    <td>{$clientes[$i]['sobrenome']}</td>
-                    <td>{$clientes[$i]['telefone']}</td>
-                    <td>{$clientes[$i]['cep']}</td>
-                    <td>{$clientes[$i]['endereco']}</td>
-                    <td>{$clientes[$i]['numero']}</td>
-                    <td>{$clientes[$i]['bairro']}</td>
-                    <td>{$clientes[$i]['complemento']}</td>
+                    <td>{$clientes[$i]->pegaId()}</td>
+                    <td>{$clientes[$i]->pegaNome()}</td>
+                    <td>{$clientes[$i]->pegaSobrenome()}</td>
+                    <td>{$clientes[$i]->pegaTelefone()}</td>
+                    <td>{$clientes[$i]->pegaCep()}</td>
+                    <td>{$clientes[$i]->pegaEndereco()}</td>
+                    <td>{$clientes[$i]->pegaNumero()}</td>
+                    <td>{$clientes[$i]->pegaBairro()}</td>
+                    <td>{$clientes[$i]->pegaComplemento()}</td>
                     <td class='operacoes'>
-                        <a href='/edicao-clientes?id={$clientes[$i]['id']}'>Editar</a>
-                        <a href='/excluir-clientes?id={$clientes[$i]['id']}' onclick='return confirm(\"Deseja excluir?\")'>Excluir</a> 
+                        <a href='/edicao-clientes?id={$clientes[$i]->pegaId()}'>Editar</a>
+                        <a href='/excluir-clientes?id={$clientes[$i]->pegaId()}' onclick='return confirm(\"Deseja excluir?\")'>Excluir</a> 
                     </td>
                   </tr>";
         }
