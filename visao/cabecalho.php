@@ -1,4 +1,4 @@
-<header class="cabecalho">
+<header class="cabecalho" data-cabecalho>
     <h1 class="nome-empresa">Nome da Empresa</h1>
     <nav class="menu">
         <a class="<?= $nav[0]?>" href="/pedidos">Pedidos</a>

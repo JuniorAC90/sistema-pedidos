@@ -29,6 +29,7 @@
                     <td>{$pedidos[$i]->pegaPagamento()}</td>
                     <td>{$pedidos[$i]->pegaTotalFormatado()}</td>
                     <td class='operacoes'>
+                        <a href='/impressao?id={$pedidos[$i]->pegaId()}'>Recibo</a>
                         <a href='/edicao-pedidos?id={$pedidos[$i]->pegaId()}'>Editar</a>
                         <a href='/excluir-pedidos?id={$pedidos[$i]->pegaId()}' onclick='return confirm(\"Deseja excluir?\")'>Excluir</a> 
                     </td>

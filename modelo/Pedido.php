@@ -12,6 +12,7 @@ class Pedido {
     private $total;
     private $estado;
     private $pagamento;
+    private $itens;
     
     function __construct() {
         
@@ -73,6 +74,10 @@ class Pedido {
         return "R$ " . str_replace('.', ',', $this->total);
     }
 
+    function pegaItens() {
+        return $this->itens;
+    }
+
     function insereId($id) {
         $this->id = $id;
     }
@@ -115,6 +120,10 @@ class Pedido {
 
     function inserePagamento($pagamento) {
         $this->pagamento = $pagamento;
+    }
+
+    function insereItens($itens) {
+        $this->itens = $itens;
     }
 
    

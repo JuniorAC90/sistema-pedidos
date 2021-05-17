@@ -23,7 +23,7 @@ class Item {
     }
 
     function pegaPreco() {
-        return $this->quantidade;
+        return $this->preco;
     }
 
     function inserePedidoId($pedidoId) {

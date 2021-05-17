@@ -38,7 +38,7 @@ function checaPedido(cliente, produtos) {
 if (botaoFecharPedido !== null) {
     botaoFecharPedido.addEventListener('click', () => {
 
-        let acionaBotao = checaPedido(clientePedido, selectItemProduto)
+        let acionaBotao = checaPedido(inputIdCliente, selectItemProduto)
 
         if (acionaBotao) {
             botaoPedido.disabled = false;
@@ -91,6 +91,9 @@ if (inputDinheiro !== null) {
 }
 
 if (inputCartao !== null) {
+    if (inputCartao.checked) {
+        verificaCartao(inputCartao.checked)
+    }
     inputCartao.addEventListener('change', () => {
         verificaCartao(inputCartao.checked)
     })

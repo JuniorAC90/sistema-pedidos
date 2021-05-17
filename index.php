@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/formulario/formulario-pedidos.css">
     <link rel="stylesheet" href="css/links/links-formulario.css">
     <link rel="stylesheet" href="css/tabela.css">
+    <link rel="stylesheet" href="css/recibo.css">
     
 </head>
 <body>
@@ -100,9 +101,24 @@
             case '/salvar-pedidos':
                 include_once "controlador/salvar-pedidos.php"; 
                 break;
+            case '/edicao-pedidos':
+                $edita = true;
+                $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+                $pedido = pegaUmPedidoComItens($id);
+                include_once "visao/formulario-pedidos.php"; 
+                break;
+            case '/editar-pedidos':
+                include_once "controlador/editar-pedidos.php"; 
+                break;
+            case '/excluir-pedidos':
+                include_once "controlador/excluir-pedidos.php"; 
+                break;
+            case '/impressao':
+                include_once "visao/recibo.php"; 
+                break;
             default:
                 $titulo = 'Pedidos';
-                include_once 'visao/principal.php';
+                header("Location: /pedidos");
                 break;
         }
 
@@ -118,5 +134,6 @@
     <script src="js/formulario-pedidos/cliente.js"></script>
     <script src="js/formulario-pedidos/produto.js"></script>
     <script src="js/formulario-pedidos/pedido.js"></script>
+    <script src="js/recibo.js"></script>
 </body>
 </html>

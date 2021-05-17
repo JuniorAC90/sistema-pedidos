@@ -1,0 +1,37 @@
+.nota {
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1rem;
+    width: 100mm;
+    
+    padding-bottom:2rem;
+}
+
+.nota__logo {
+    height: 50mm;
+    margin:0 auto;
+    text-align: center;
+    width: 50mm;
+}
+
+.nota__subtitulo {
+    
+    margin:1rem;
+    border-bottom: 1px dashed black;
+    border-top: 1px dashed black;
+    padding-bottom:1rem;
+    padding-top:1rem;
+    
+}
+
+.nota__subtitulo--pedido, .nota__subtitulo--cliente, .total__desc {
+    font-weight: bold;
+}
+
+.botao-imprimir {
+    margin-top: 1rem;
+}
+
+

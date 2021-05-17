@@ -1,4 +1,7 @@
 <?php
+    $idPedidoCancela = filter_input(INPUT_POST, 'id-pedido', FILTER_SANITIZE_NUMBER_INT); 
+    editaPedido($idPedidoCancela);
+
     $idCliente = filter_input(INPUT_POST, 'id-cliente', FILTER_SANITIZE_NUMBER_INT); 
 
     $itemProdutos = filter_input(INPUT_POST, 'item', FILTER_DEFAULT,FILTER_REQUIRE_ARRAY); 

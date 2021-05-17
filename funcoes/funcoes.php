@@ -7,8 +7,11 @@
             case '/clientes':
                 $nav = array("", "", "ativo");
                 break;
-            default:
+            case '/pedidos':
                 $nav = array("ativo", "", "");
+                break;
+            default:
+                $nav = array("", "", "");
                 break;
         }
         return $nav;
@@ -148,6 +151,51 @@
         return $pedidos;
     }
 
+    function pegaUmPedidoComItens($id) {
+        $banco = new Banco();
+        $conexao = $banco->pegaConexao();
+        $query = "SELECT * FROM pedido WHERE id = ?";
+        $statement = $conexao->prepare($query);
+        $statement->bind_param('i', $id);
+        if ($statement->execute()) {
+            $resultado = $statement->get_result();
+            while ($linha = $resultado->fetch_assoc()) {
+                $pedido = new Pedido();
+                $pedido->insereId($linha['id']);
+                $pedido->insereClienteId($linha['cliente_id']);
+                $pedido->insereAno($linha['ano']);
+                $pedido->insereMes($linha['mes']);
+                $pedido->insereDia($linha['dia']);
+                $pedido->insereHora($linha['hora']);
+                $pedido->insereMinuto($linha['minuto']);
+                $pedido->insereSegundo($linha['segundo']);
+                $pedido->insereTotal($linha['total']);
+                $pedido->insereEstado($linha['estado']);
+                $pedido->inserePagamento($linha['pagamento']);
+            }
+        }
+        $statement->close();
+
+        $query = "SELECT * FROM item WHERE pedido_id = ?";
+        $statement = $conexao->prepare($query);
+        $statement->bind_param('i', $id);
+        $itens = array();
+        if ($statement->execute()) {
+            $resultado = $statement->get_result();
+            while ($linha = $resultado->fetch_assoc()) {
+                $item = new Item();
+                $item->inserePedidoId($linha['pedido_id']);
+                $item->insereProdutoId($linha['produto_id']);
+                $item->insereQuantidade($linha['quantidade']);
+                $item->inserePreco($linha['preco']);
+                $itens[] = $item;
+            }
+        }
+        $pedido->insereItens($itens);
+        $statement->close();
+        return $pedido;
+    }
+
     function insereCliente($cliente) {
         $banco = new Banco();
         $conexao = $banco->pegaConexao(); 
@@ -167,9 +215,9 @@
         $statement->execute();
 
         if ($statement->error) {
-            lancaMensagem("Erro ao inserir os dados.", "erro");
+            lancaMensagem("Erro ao inserir o cliente.", "erro");
         } else {
-            lancaMensagem("Dados inseridos com sucesso!", "sucesso");
+            lancaMensagem("Cliente inserido com sucesso!", "sucesso");
             //$statement->affected_rows;
             $statement->close();
             header("refresh:2; url=/clientes");
@@ -220,12 +268,12 @@
         $statement->execute();
 
         if ($statement->error) {
-            lancaMensagem("Erro ao inserir os dados.", "erro");
+            lancaMensagem("Erro ao inserir o pedido.", "erro");
         } else {
-            lancaMensagem("Dados inseridos com sucesso!", "sucesso");
+            lancaMensagem("Pedido inserido com sucesso!", "sucesso");
             //$statement->affected_rows;
             $statement->close();
-            header("refresh:2; url=/pedidos");
+            
         }
     }
 
@@ -233,19 +281,20 @@
         $indice++;
         $banco = new Banco();
         $conexao = $banco->pegaConexao(); 
-        $query = "INSERT INTO item(pedido_id, produto_id, quantidade) VALUES(?, ?, ?)";
+        $query = "INSERT INTO item(pedido_id, produto_id, quantidade, preco) VALUES(?, ?, ?, ?)";
         $statement = $conexao->prepare($query);
-        $statement->bind_param('sii', $pedidoId, $produtoId, $quantidade);
+        $statement->bind_param('siid', $pedidoId, $produtoId, $quantidade, $preco);
 
         $pedidoId = $item->pegaPedidoId();
         $produtoId = $item->pegaProdutoId();
         $quantidade = $item->pegaQuantidade();
+        $preco = $item->pegaPreco();
         
 
         $statement->execute();
 
         if ($statement->error) {
-            lancaMensagem("Erro ao inserir os dados.", "erro");
+            lancaMensagem("Erro ao inserir o item.", "erro");  
         } else {
             lancaMensagem("Item {$indice} inserido com sucesso!", "sucesso");
             //$statement->affected_rows;
@@ -300,12 +349,34 @@
        
 
         if ($statement->error) {
-            lancaMensagem("Erro ao editar os dados.", "erro");
+            lancaMensagem("Erro ao editar o produto.", "erro");
         } else {
             lancaMensagem("Dados editados com sucesso!", "sucesso");
             //$statement->affected_rows;
             $statement->close();
             header("refresh:2; url=/produtos");
+        }
+    }
+
+    function editaPedido($id) {
+        $banco = new Banco();
+        $conexao = $banco->pegaConexao(); 
+        $query = "UPDATE pedido SET estado = ? WHERE id = ?";
+        $statement = $conexao->prepare($query);
+        $statement->bind_param('si', $estado, $id);
+
+        $estado = 'cancelado';
+        
+
+        $statement->execute();
+
+        if ($statement->error) {
+            lancaMensagem("Erro ao cancelar o pedido.", "erro");
+        } else {
+            lancaMensagem("Pedido cancelado com sucesso!", "sucesso");
+            //$statement->affected_rows;
+            $statement->close();
+            //header("refresh:2; url=/impressao?pedido={$id}");
         }
     }
 
@@ -320,9 +391,9 @@
         $statement->execute();
 
         if ($statement->error) {
-            lancaMensagem("Erro ao apagar os dados.", "erro");
+            lancaMensagem("Erro ao apagar o cliente.", "erro");
         } else {
-            lancaMensagem("Dados removidos com sucesso!", "sucesso");
+            lancaMensagem("Cliente removido com sucesso!", "sucesso");
             //$statement->affected_rows;
             $statement->close();
             header("refresh:2; url=/clientes");
@@ -340,12 +411,32 @@
         $statement->execute();
 
         if ($statement->error) {
-            lancaMensagem("Erro ao apagar os dados.", "erro");
+            lancaMensagem("Erro ao apagar o produto.", "erro");
         } else {
-            lancaMensagem("Dados removidos com sucesso!", "sucesso");
+            lancaMensagem("Produto removido com sucesso!", "sucesso");
             //$statement->affected_rows;
             $statement->close();
             header("refresh:2; url=/produtos");
+        }
+    }
+
+    function removePedido($id) {
+        $banco = new Banco();
+        $conexao = $banco->pegaConexao(); 
+        $query = "DELETE FROM pedido WHERE id = ?";
+        $statement = $conexao->prepare($query);
+        $statement->bind_param('i', $id);
+
+        
+        $statement->execute();
+
+        if ($statement->error) {
+            lancaMensagem("Erro ao apagar o pedido.", "erro");
+        } else {
+            lancaMensagem("Pedido removido com sucesso!", "sucesso");
+            //$statement->affected_rows;
+            $statement->close();
+            header("refresh:2; url=/pedidos");
         }
     }
 
