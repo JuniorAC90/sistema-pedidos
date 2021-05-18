@@ -78,6 +78,16 @@ class Pedido {
         return $this->itens;
     }
 
+    function pegaPagamentoDescricao() {
+        if($this->pagamento == 'd') {
+            return "Dinheiro";
+        } else if ($this->pagamento == 'c') {
+            return "Cartão";
+        } else {
+            return "Transferência";
+        }
+    }
+
     function insereId($id) {
         $this->id = $id;
     }

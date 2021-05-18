@@ -24,3 +24,13 @@
     padding: 1rem;
 }
 
+.secao-pedidos__texto--input {
+    margin-left: 1rem;
+}
+
+.secao-pedidos__campos--produto {
+    display: flex;
+    margin-left: 1.5rem;
+    margin-top: 1.5rem;
+}
+

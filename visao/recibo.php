@@ -14,6 +14,7 @@
         <h3>Cliente: <span class="nota__subtitulo--cliente"><?= $cliente->pegaNome()?></span></h3>
         <h3>Data: <span class="nota__subtitulo--data"><?= $pedido->pegaData()?></span></h3>
         <h3>Hora: <span class="nota__subtitulo--hora"><?= $pedido->pegaHorario()?></span></h3>
+        <h3>Pagamento: <span class="nota__subtitulo--hora"><?= $pedido->pegaPagamentoDescricao()?></span></h3>
     </div>
    
     <table class="nota__tabela tabela">

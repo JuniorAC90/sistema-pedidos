@@ -11,20 +11,25 @@
 ?>
 
 <main class="container">
-    <section class="secao-pedidos">
+<section class="secao-pedidos">
         <div class="secao-pedidos__campos">
-            <label class="secao-pedidos__texto">
-                Cliente:<input list="lista-clientes" data-cliente>
-                <datalist id="lista-clientes">
-                    <?php 
-                        for ($i = 0; $i < count($clientes); $i++) {
-                            echo "<option value='{$clientes[$i]->pegaTelefone()}'>{$clientes[$i]->pegaNome()}</option>";
-                        }
-                        
-                    ?>
-                </datalist>
-                <button data-adiciona-cliente>Adicionar</button>
-            </label>
+            <fieldset>
+                <label class="secao-pedidos__texto" for="lista-clientes">
+                    Cliente:
+                </label>
+                <div class="secao-pedidos__texto--input">
+                    <input list="lista-clientes" data-cliente>
+                    <datalist id="lista-clientes">
+                        <?php 
+                            for ($i = 0; $i < count($clientes); $i++) {
+                                echo "<option value='{$clientes[$i]->pegaTelefone()}'>{$clientes[$i]->pegaNome()}</option>";
+                            }
+                            
+                        ?>
+                    </datalist>
+                    <button data-adiciona-cliente>Adicionar</button>
+                </div>
+            </fieldset>
             <select  data-cliente-json hidden>
                 <?php 
                 
@@ -34,23 +39,32 @@
                 ?>
             </select>
         </div>
-        <div class="secao-pedidos__campos">
-            <label class="secao-pedidos__texto">
-                Produto:<input list="lista-produtos" data-produto>
-                <datalist id="lista-produtos">
-                    <?php 
-                        for ($i = 0; $i < count($produtos); $i++) {
-                            echo "<option value={$produtos[$i]->pegaId()}>{$produtos[$i]->pegaDescricao()}</option>";
-                        }
-                        
-                    ?>
-                </datalist>
-            </label>
-            <label class="secao-pedidos__texto">
-                
-                Quantidade:<input type="number" id=quantidade-pedido name="quantidade-pedido" min="1" value="1" data-quantidade-pedido>
-                <button data-adiciona-produto>Adicionar</button>
-            </label>
+        <div class="secao-pedidos__campos--produto">
+            <fieldset>
+                <label class="secao-pedidos__texto" for="lista-produtos">
+                    Produto:
+                </label>
+                <div class="secao-pedidos__texto--input">
+                    <input list="lista-produtos" data-produto>
+                    <datalist id="lista-produtos">
+                        <?php 
+                            for ($i = 0; $i < count($produtos); $i++) {
+                                echo "<option value={$produtos[$i]->pegaId()}>{$produtos[$i]->pegaDescricao()}</option>";
+                            }
+                            
+                        ?>
+                    </datalist>
+                </div>
+            </fieldset>
+            <fieldset>
+                <label class="secao-pedidos__texto" for="quantidade-pedido">
+                    Quantidade:
+                </label>
+                <div class="secao-pedidos__texto--input">
+                    <input type="number" id=quantidade-pedido name="quantidade-pedido" min="1" value="1" data-quantidade-pedido>
+                    <button data-adiciona-produto>Adicionar</button>
+                </div>
+            </fieldset>
             <select  data-produto-json hidden>
                 <?php 
                 
@@ -73,7 +87,7 @@
                 <input type="number" id="id-cliente" name="id-cliente" value="<?= $pedido->pegaClienteId();?>" data-id-cliente  hidden readonly>
             </label>
         </fieldset>
-        <fieldset >
+        <fieldset hidden>
             
             <select id="item" name="item[]" name multiple data-item-produto>
                 <?php
@@ -115,8 +129,9 @@
                 <tbody class="itens" data-itens-tabela>
                     <?php
                         for ($i = 0; $i < count($itens); $i++) {
+                            $produto = pegaUmProduto($itens[$i]->pegaProdutoId());
                             echo "<tr>
-                                    <td>{$itens[$i]->pegaProdutoId()}</td>
+                                    <td>{$produto->pegaDescricao()}</td>
                                     <td>{$itens[$i]->pegaQuantidade()}</td>
                                     <td>{$itens[$i]->pegaPreco()}</td>
                                 </tr>";

@@ -4,6 +4,7 @@
 }
 
 .formulario-clientes__campos {
+    display: flex;
     margin-left: 1.5rem;
     margin-top: 1.5rem;
 }
@@ -13,8 +14,7 @@
 }
 
 .formulario-clientes__texto {
-    font-size: 1.rem;
-    margin: 1rem;
+    font-size: 1rem;
 }
 
 .formulario-clientes__botoes {
@@ -26,6 +26,10 @@
 
 .nome-cliente {
     font-weight: bold;
+}
+
+.secao-clientes__texto--input {
+    margin-left: 1rem;
 }
 
 
