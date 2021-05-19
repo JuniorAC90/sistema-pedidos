@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/links/links-formulario.css">
     <link rel="stylesheet" href="css/tabela.css">
     <link rel="stylesheet" href="css/recibo.css">
+    <link rel="stylesheet" href="css/principal.css">
     
 </head>
 <body>
@@ -135,5 +136,9 @@
     <script src="js/formulario-pedidos/produto.js"></script>
     <script src="js/formulario-pedidos/pedido.js"></script>
     <script src="js/recibo.js"></script>
+    <script src="js/filtro.js"></script>
+    <script src="js/listagem-clientes.js"></script>
+    <script src="js/listagem-produtos.js"></script>
+    <script src="js/listagem-pedidos.js"></script>
 </body>
 </html>

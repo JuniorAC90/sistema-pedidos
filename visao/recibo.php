@@ -31,14 +31,27 @@
 
                 for ($i = 0; $i < count($pedido->pegaItens()); $i++) {
                     $produto = pegaUmProduto($pedido->pegaItens()[$i]->pegaProdutoId());
+                    $preco = $pedido->pegaItens()[$i]->pegaPreco();
+                    $precoFormatado = number_format($preco,2,',', '.');
                     echo "
                     <tr>
                         <td>{$produto->pegaDescricao()}</td>
                         <td>{$pedido->pegaItens()[$i]->pegaQuantidade()}</td>
-                        <td>{$pedido->pegaItens()[$i]->pegaPreco()}</td>
+                        <td>R$ {$precoFormatado}</td>
                     </tr>
                     ";
 
+                }
+            ?>
+            <?php 
+                if ($pedido->pegaPagamento() == 'c') {
+                    echo "
+                    <tr>
+                        <td>Taxa do Cartão</td>
+                        <td>-</td>
+                        <td>R$ 2,00</td>
+                    </tr>
+                    ";
                 }
             ?>
             <tr class="total">

@@ -19,6 +19,10 @@ class Produto {
         return $this->preco;
     }
 
+    function pegaPrecoFormatado() {
+        return "R$ " . str_replace('.', ',', $this->preco);
+    }
+
 
     function insereId($id) {
         $this->id = $id;

@@ -11,7 +11,7 @@
                 <fieldset>
                     <label class="formulario-produtos__texto" for="preco-produtos">Preço:</label>
                     <div class="secao-pedidos__texto--input">
-                        <input type="number" id="preco-produtos" name="preco-produtos" min="0.00" step="0.01" data-preco>
+                        R$<input type="number" id="preco-produtos" name="preco-produtos" min="0.00" step="0.01" data-preco>
                     </div>
                 </fieldset>
                     

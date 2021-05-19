@@ -1,0 +1,8 @@
+.busca-clientes, .busca-produtos, .busca-pedidos  {
+    margin: 1rem;
+}
+
+
+.esconder {
+    display: none;
+}

@@ -3,7 +3,9 @@
 ?>
 
 <main class="container">
-    
+    <section class="busca-produtos">
+        <label>Filtro:</label><input type="text" placeholder="Descrição do produto..." data-busca-produtos>
+    </section>
     <table class="tabela">
         <thead>
             <tr>
@@ -16,10 +18,10 @@
         <tbody>
         <?php
         for ($i = 0; $i < count($produtos); $i++) {
-            echo "<tr>
+            echo "<tr data-linha-produto>
                     <td>{$produtos[$i]->pegaId()}</td>
-                    <td>{$produtos[$i]->pegaDescricao()}</td>
-                    <td>{$produtos[$i]->pegaPreco()}</td>
+                    <td data-dados-descricao-produto>{$produtos[$i]->pegaDescricao()}</td>
+                    <td>{$produtos[$i]->pegaPrecoFormatado()}</td>
                     <td class='operacoes'>
                         <a href='/edicao-produtos?id={$produtos[$i]->pegaId()}'>Editar</a>
                         <a href='/excluir-produtos?id={$produtos[$i]->pegaId()}' onclick='return confirm(\"Deseja excluir?\")'>Excluir</a> 

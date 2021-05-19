@@ -3,7 +3,9 @@
 ?>
 
 <main class="container">
-    
+    <section class="busca-clientes">
+        <label>Filtro:</label><input type="text" placeholder="Nome do cliente..." data-busca-clientes>
+    </section>
     <table class="tabela">
         <thead class="tabela-cabecalho">
             <tr>
@@ -22,9 +24,9 @@
         <tbody class="tabela-principal">
         <?php
         for ($i = 0; $i < count($clientes); $i++) {
-            echo "<tr>
+            echo "<tr data-linha-cliente>
                     <td>{$clientes[$i]->pegaId()}</td>
-                    <td>{$clientes[$i]->pegaNome()}</td>
+                    <td data-dados-nome-cliente>{$clientes[$i]->pegaNome()}</td>
                     <td>{$clientes[$i]->pegaSobrenome()}</td>
                     <td>{$clientes[$i]->pegaTelefone()}</td>
                     <td>{$clientes[$i]->pegaCep()}</td>
