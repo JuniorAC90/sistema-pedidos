@@ -63,9 +63,12 @@ function adicionaItemTabela(produto, quantidade) {
     let dadoQuantidade = document.createElement("td")
     let dadoPreco = document.createElement("td")
 
+    let preco = produto.preco * quantidade
+    let precoFormatado = preco.toFixed(2)
+
     dadoProduto.innerHTML = produto.descricao
     dadoQuantidade.innerHTML = quantidade
-    dadoPreco.innerHTML = 'R$ ' + String(produto.preco).replace('.', ',')
+    dadoPreco.innerHTML = 'R$ ' + String(precoFormatado).replace('.', ',')
 
     linhaProduto.appendChild(dadoProduto)
     linhaProduto.appendChild(dadoQuantidade)
