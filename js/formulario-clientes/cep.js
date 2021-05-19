@@ -21,6 +21,7 @@ function preencheCampos(json) {
 
 function buscaCep(valor) {
     let digitosCep = valor.replace(/\D/g, '')
+    let erroCep = false
     if (campoCep != '' && digitosCep.length == 8) {
         let xhr = new XMLHttpRequest();
         let url = `https://viacep.com.br/ws/${digitosCep}/json/`
@@ -29,7 +30,13 @@ function buscaCep(valor) {
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
-                    preencheCampos(JSON.parse(xhr.responseText))
+                    erroCep = JSON.parse(xhr.response)
+                    
+                    if (erroCep.erro) {
+                        alert('CEP Inválido')
+                    } else {
+                        preencheCampos(JSON.parse(xhr.responseText))
+                    }
                 }
             }
         }

@@ -5,13 +5,13 @@
                 <fieldset>
                     <label class="formulario-produtos__texto" for="descricao-produto">Descrição:</label>
                     <div class="secao-pedidos__texto--input">
-                        <input type="text" id="descricao-produto" name="descricao-produto">
+                        <input type="text" id="descricao-produto" name="descricao-produto" required>
                     </div>    
                 </fieldset>
                 <fieldset>
                     <label class="formulario-produtos__texto" for="preco-produtos">Preço:</label>
                     <div class="secao-pedidos__texto--input">
-                        R$<input type="number" id="preco-produtos" name="preco-produtos" min="0.00" step="0.01" data-preco>
+                        R$<input type="number" id="preco-produtos" name="preco-produtos" min="0.00" step="0.01" required data-preco>
                     </div>
                 </fieldset>
                     

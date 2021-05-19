@@ -215,7 +215,13 @@
         $statement->execute();
 
         if ($statement->error) {
-            lancaMensagem("Erro ao inserir o cliente.", "erro");
+            //var_dump($statement);
+            if ($statement->errno == 1062) {
+                lancaMensagem("Telefone já está cadastrado.", "erro");
+            } else {
+                lancaMensagem("Erro ao inserir o cliente.", "erro");
+            }
+            
         } else {
             lancaMensagem("Cliente inserido com sucesso!", "sucesso");
             //$statement->affected_rows;

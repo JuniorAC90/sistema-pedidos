@@ -5,19 +5,19 @@
             <fieldset class="secao-clientes__texto--input">
                 <label class="formulario-clientes__texto" for="nome-cliente">Nome:</label>
                 <div class="formulario-clientes__campos--input">
-                    <input type="text" id="nome-cliente" name="nome-cliente">
+                    <input type="text" id="nome-cliente" name="nome-cliente" required>
                 </div> 
             </fieldset>
             <fieldset class="secao-clientes__texto--input">    
                 <label class="formulario-clientes__texto" for="sobrenome-cliente">Sobrenome:</label>
                 <div>
-                    <input type="text" id="sobrenome-cliente" name="sobrenome-cliente">
+                    <input type="text" id="sobrenome-cliente" name="sobrenome-cliente" required>
                 </div>
             </fieldset>
             <fieldset class="secao-clientes__texto--input">
                 <label class="formulario-clientes__texto" for="telefone-cliente">Telefone:</label>
                 <div>
-                    <input type="tel" id="telefone-cliente" name="telefone-cliente" placeholder="(00) 00000 - 0000" maxlength="14" pattern="\(\d{2}\)\s\d{5}-\d{4}" data-telefone>
+                    <input type="tel" id="telefone-cliente" name="telefone-cliente" placeholder="(00) 00000 - 0000" maxlength="14" pattern="\(\d{2}\)\s\d{5}-\d{4}" required data-telefone>
                 </div>
                 
             </fieldset>

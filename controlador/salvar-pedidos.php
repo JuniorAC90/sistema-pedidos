@@ -58,6 +58,6 @@
         insereItem($itens[$i], $i);
     }
 
-    header("refresh:2; url=/impressao?pedido={$idPedido}");
+    header("refresh:2; url=/impressao?id={$idPedido}");
 
     

@@ -10,13 +10,13 @@
             <fieldset>
                 <label class="formulario-produtos__texto" for="descricao-produto">Descrição:</label>
                 <div class="secao-pedidos__texto--input">
-                    <input type="text" id="descricao-produto" name="descricao-produto" value="<?=$produto->pegaDescricao()?>">
+                    <input type="text" id="descricao-produto" name="descricao-produto" value="<?=$produto->pegaDescricao()?>" required>
                 </div>
             </fieldset>
             <fieldset>
                 <label class="formulario-produtos__texto" for="preco-produto">Preço:</label>
                 <div class="secao-pedidos__texto--input">
-                    <input type="number" id="preco-produto" name="preco-produto" min="0.00" step="0.01" value="<?=$produto->pegaPreco()?>"" data-preco>
+                    <input type="number" id="preco-produto" name="preco-produto" min="0.00" step="0.01" value="<?=$produto->pegaPreco()?>" required data-preco>
                 </div>
             </fieldset>
             

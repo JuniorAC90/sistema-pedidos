@@ -10,19 +10,19 @@
         <fieldset class="secao-clientes__texto--input">
             <label class="formulario-clientes__texto" for="nome-cliente">Nome:</label>
             <div>
-                <input type="text" id="nome-cliente" name="nome-cliente" value="<?= $cliente->pegaNome()?>">
+                <input type="text" id="nome-cliente" name="nome-cliente" value="<?= $cliente->pegaNome()?>" required>
             </div>
         </fieldset>
         <fieldset class="secao-clientes__texto--input">
             <label class="formulario-clientes__texto" for="sobrenome-cliente">Sobrenome:</label>
             <div>
-                <input type="text" id="sobrenome-cliente" name="sobrenome-cliente" value="<?= $cliente->pegaSobrenome()?>">
+                <input type="text" id="sobrenome-cliente" name="sobrenome-cliente" value="<?= $cliente->pegaSobrenome()?>" required>
             </div>
         </fieldset>
         <fieldset class="secao-clientes__texto--input">   
             <label class="formulario-clientes__texto" for="telefone-cliente">Telefone:</label>
             <div>
-                <input type="tel" id="telefone-cliente" name="telefone-cliente" placeholder="(00) 00000 - 0000" maxlength="14" pattern="\(\d{2}\)\s\d{5}-\d{4}" value="<?= $cliente->pegaTelefone()?>" data-telefone>
+                <input type="tel" id="telefone-cliente" name="telefone-cliente" placeholder="(00) 00000 - 0000" maxlength="14" pattern="\(\d{2}\)\s\d{5}-\d{4}" value="<?= $cliente->pegaTelefone()?>" required data-telefone>
             </div>
         </fieldset>
             
