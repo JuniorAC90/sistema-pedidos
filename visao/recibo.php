@@ -57,7 +57,7 @@
             <tr class="total">
                 <td><span class="total__desc">Total</span></td>
                 <td></td>
-                <td><span class="total__desc"><?=$pedido->pegaTotal()?></span</td>
+                <td><span class="total__desc"><?=$pedido->pegaTotalFormatado()?></span</td>
             </tr>
             
         </tbody>
