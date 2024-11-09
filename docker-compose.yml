@@ -6,10 +6,10 @@ services:
     image: mysql:5.7
     container_name: mysql-container
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: meu_banco
-      MYSQL_USER: usuario
-      MYSQL_PASSWORD: senha
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sistema-pedidos
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
     volumes:
       - ./banco_de_dados:/docker-entrypoint-initdb.d
     ports:
